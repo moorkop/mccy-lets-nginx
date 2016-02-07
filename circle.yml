@@ -12,7 +12,7 @@ dependencies:
 
 test:
   override:
-    - docker run --entrypoint="" mccy-lets-nginx grep "proxy_request_buffering off" /templates/nginx.conf
+    - docker run --entrypoint="/bin/sh" mccy-lets-nginx grep "proxy_request_buffering off" /templates/nginx.conf
 
 deployment:
   bintray:
