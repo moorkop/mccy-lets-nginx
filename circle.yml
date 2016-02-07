@@ -1,0 +1,18 @@
+machine:
+  pre:
+    - sudo curl -L -o /usr/bin/docker 'https://s3-external-1.amazonaws.com/circle-downloads/docker-1.9.1-circleci'
+    - sudo chmod 0755 /usr/bin/docker
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker info
+    - docker build -t moorkop/mccy-lets-nginx .
+
+deployment:
+  bintray:
+    branch: master
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $BINTRAY_USER -p $BINTRAY_API_KEY itzgeoff-docker-images.bintray.io
+      - docker push moorkop/mccy-lets-nginx
