@@ -1,5 +1,8 @@
 # mccy-lets-nginx
 
+[Built Image](https://bintray.com/itzgeoff/images/moorkop%3Amccy-lets-nginx/view)
+: `docker pull itzgeoff-docker-images.bintray.io/moorkop/mccy-lets-nginx`
+
 Extends [lets-nginx](https://hub.docker.com/r/smashwilson/lets-nginx/)
 by adjusting the `nginx.conf` by adding:
 
