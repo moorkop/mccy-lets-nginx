@@ -8,6 +8,7 @@ machine:
 dependencies:
   override:
     - docker info
+    - docker pull smashwilson/lets-nginx
     - docker build -t mccy-lets-nginx .
 
 test:
