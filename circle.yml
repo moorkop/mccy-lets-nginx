@@ -1,7 +1,6 @@
 machine:
   pre:
-    - sudo curl -L -o /usr/bin/docker 'https://s3-external-1.amazonaws.com/circle-downloads/docker-1.9.1-circleci'
-    - sudo chmod 0755 /usr/bin/docker
+    - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
   services:
     - docker
 
@@ -16,12 +15,6 @@ test:
     - docker run --entrypoint="/bin/sh" mccy-lets-nginx -c 'grep proxy_request_buffering /templates/nginx.conf'
 
 deployment:
-  bintray:
-    branch: master
-    commands:
-      - docker login -e $DOCKER_EMAIL -u $BINTRAY_USER -p $BINTRAY_API_KEY itzgeoff-docker-images.bintray.io
-      - docker tag mccy-lets-nginx itzgeoff-docker-images.bintray.io/moorkop/mccy-lets-nginx
-      - docker push itzgeoff-docker-images.bintray.io/moorkop/mccy-lets-nginx
   hub:
     branch: master
     commands:
